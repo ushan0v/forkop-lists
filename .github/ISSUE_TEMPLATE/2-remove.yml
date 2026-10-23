@@ -1,0 +1,57 @@
+name: ➖ Убрать из списка
+description: В список попало лишнее, и из-за этого что-то не работает
+title: "Убрать: "
+labels: ["remove"]
+body:
+  - type: dropdown
+    id: lists
+    attributes:
+      label: Список
+      description: Выберите список, откуда убрать домены и адреса.
+      multiple: true
+      options:
+        - RU Blocked (All)
+        - RU Blocked (RKN)
+        - RU Blocked (Geo)
+        - RU Only
+        - UA Blocked
+        - AI
+        - ChatGPT
+        - Claude
+        - Cloudflare
+        - Discord
+        - Facebook
+        - Gemini
+        - GitHub
+        - Google Play
+        - Instagram
+        - Roblox
+        - Spotify
+        - Supercell
+        - Telegram
+        - TikTok
+        - Twitch
+        - WhatsApp
+        - X (Twitter)
+        - YouTube
+        - Ads
+    validations:
+      required: true
+
+  - type: textarea
+    id: entries
+    attributes:
+      label: Домены и адреса
+      description: По одному в строке. Домен охватывает и свои поддомены.
+      placeholder: |
+        example.com
+        cdn.example.net
+        203.0.113.0/24
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: comment
+    attributes:
+      label: Комментарий

@@ -1,0 +1,89 @@
+name: Build lists
+
+on:
+  schedule:
+    - cron: "40 2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - build.py
+      - lists.toml
+      - sources/**
+      - .github/workflows/build.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-lists
+  cancel-in-progress: false
+
+env:
+  SING_BOX_VERSION: 1.14.3
+  SING_BOX_SHA256: e2bdf179c15a3652955dc44867e33ca0965c9c9b91b34267dcc5a5d639a5feee
+  KEEP_RELEASES: 10
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5.0.0
+
+      - name: Install sing-box
+        run: |
+          archive="sing-box-${SING_BOX_VERSION}-linux-amd64"
+          curl -fsSLo sing-box.tar.gz "https://github.com/SagerNet/sing-box/releases/download/v${SING_BOX_VERSION}/${archive}.tar.gz"
+          echo "${SING_BOX_SHA256}  sing-box.tar.gz" | sha256sum -c -
+          tar -xzf sing-box.tar.gz
+          sudo install -m 755 "${archive}/sing-box" /usr/local/bin/sing-box
+          rm -rf sing-box.tar.gz "${archive}"
+          sing-box version
+
+      - name: Get the published lists
+        run: |
+          if git ls-remote --exit-code --heads origin release >/dev/null; then
+            git fetch --depth=1 origin release
+            git worktree add --detach previous FETCH_HEAD
+          else
+            mkdir previous
+          fi
+
+      - name: Build
+        id: build
+        run: >-
+          python3 build.py --out out --previous previous
+          --summary "$GITHUB_STEP_SUMMARY" --notes notes.md --github-output "$GITHUB_OUTPUT"
+
+      - name: Publish
+        if: steps.build.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$(date -u +%Y-%m-%d-%H%M)"
+          git -C out init -q -b release
+          git -C out config user.name "github-actions[bot]"
+          git -C out config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C out add -A
+          git -C out commit -qm "Lists of ${tag}"
+          git -C out push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" release
+          gh release create "$tag" out/*.srs out/*.json --title "$tag" --notes-file notes.md --latest
+          gh release list --limit 100 --json tagName --jq ".[${KEEP_RELEASES}:][].tagName" |
+            while read -r old; do gh release delete "$old" --yes --cleanup-tag; done
+
+      - name: Refresh the jsDelivr mirror
+        if: steps.build.outputs.changed == 'true'
+        continue-on-error: true
+        run: |
+          for file in out/*.srs out/*.json; do
+            curl -fsS -o /dev/null "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@release/$(basename "$file")" || true
+          done
+
+      # The other lists are out already; a red run is what tells someone to look at these.
+      - name: Fail on lists left at their last version
+        if: steps.build.outputs.kept != ''
+        env:
+          KEPT: ${{ steps.build.outputs.kept }}
+        run: |
+          echo "::error::Left at their last version: ${KEPT}. The run summary says why."
+          exit 1

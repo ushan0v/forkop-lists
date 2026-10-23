@@ -1,0 +1,31 @@
+# Russian services that refuse VPN users and that the merged sources miss.
+# Seeded from the services Meduza listed on 2026-04-16 as closing access with a VPN on.
+aviasales.com
+aviasales.ru
+av.ru
+belkacar.ru
+city-mobil.ru
+cian.ru
+detmir.ru
+dixy.ru
+eldorado.ru
+emias.info
+fdoctor.ru
+goldapple.ru
+ivi.ru
+karavaevi.ru
+lamoda.ru
+lmcdn.ru
+medsi.ru
+megamarket.ru
+mosenergosbyt.ru
+mvideo.ru
+pochtabank.ru
+profi.ru
+raiffeisen.ru
+rostics.ru
+samokat.ru
+sovcombank.ru
+vkusnoitochka.ru
+vkusvill.ru
+vseinstrumenti.ru
