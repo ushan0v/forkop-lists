@@ -1,0 +1,29 @@
+name: 📋 Новый список
+description: Сервису нужен свой путь или свои подсети
+title: "Новый список: "
+labels: ["new list"]
+body:
+  - type: input
+    id: service
+    attributes:
+      label: Сервис
+      placeholder: Netflix
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Домены, адреса и источники
+      placeholder: |
+        netflix.com
+        nflxvideo.net
+        45.57.0.0/17
+        https://github.com/v2fly/domain-list-community/blob/master/data/netflix
+    validations:
+      required: true
+
+  - type: textarea
+    id: comment
+    attributes:
+      label: Комментарий
