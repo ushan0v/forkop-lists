@@ -191,6 +191,9 @@ class Domains:
         for kind in ("suffix", "full", "keyword", "regex"):
             getattr(self, kind).update(getattr(other, kind))
 
+    def holds(self, name):
+        return name in self.full or covered(name, self.suffix)
+
     def subtract(self, other, wider=False):
         """Drop every name the other list already matches by name; with wider, also every
         suffix of this list that covers one of the other list's names."""
@@ -289,15 +292,20 @@ def build_list(fetcher, recipe, built_lists):
     for value in recipe.get("add", []):
         if not built.domains.add("suffix", value):
             raise SystemExit(f"lists.toml: {recipe['name']} adds an invalid domain {value!r}")
+    kept = Built(recipe)
     try:
         collect_domains(fetcher, built, recipe.get("domains", []), skip)
         built.prefixes = collect_prefixes(fetcher, recipe.get("ips", []), built.sources)
         for scope in recipe.get("scoped", []):
             built.scoped.append((scope, collect_prefixes(fetcher, scope["ips"], built.sources)))
+        collect_domains(fetcher, kept, recipe.get("keep", []), skip)
+        built.sources += kept.sources
     except SourceError as exc:
         built.failures.append(str(exc))
         return built
     # Exclusions apply to the list's own sources; included lists come in whole.
+    own = Domains()
+    own.update(built.domains)
     for other in recipe.get("exclude_lists", []):
         excluded = built_lists[other]
         if excluded.failures:
@@ -306,6 +314,11 @@ def build_list(fetcher, recipe, built_lists):
         wide = built.domains.subtract(excluded.domains, wider=recipe.get("exclude_wider", False))
         if wide:
             print(f"{recipe['name']}: left out zones that hold names of {other}: {', '.join(wide)}", flush=True)
+    restored = [name for name in kept.domains.suffix | kept.domains.full
+                if own.holds(name) and not built.domains.holds(name)]
+    built.domains.suffix.update(restored)
+    if restored:
+        print(f"{recipe['name']}: kept {len(restored)} names its exclusions took out", flush=True)
     for other in recipe.get("include_lists", []):
         included = built_lists[other]
         if included.failures:

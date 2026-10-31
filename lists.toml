@@ -5,6 +5,7 @@
 #   add            domains added by hand
 #   include_lists  other lists merged in
 #   exclude_lists  other lists whose names are taken out
+#   keep           sources of domains the exclusions leave in, where the list's own sources hold them
 #   drop           entries taken out as written, their subdomains stay
 #   allow_tlds     whole top-level domains kept; any other entry without a dot is dropped
 #   expect         names and addresses the built list must match, checked with sing-box
@@ -24,19 +25,22 @@ expect_not = ["yandex.ru", "gosuslugi.ru", "vk.com", "google.com", "googleapis.c
 name = "ru-blocked-rkn"
 title = "RU Blocked (RKN)"
 # Re:filter and the antifilter community also list sites that block Russia themselves:
-# whatever the geoblock list holds is taken out of them, and what Russia blocks comes back in.
+# whatever the geoblock list holds is taken out of them, and what Russia blocks comes back in,
+# the names of the registry and the blocked services.
 domains = [
     "https://raw.githubusercontent.com/1andrevich/Re-filter-lists/main/domains_all.lst",
     "https://community.antifilter.download/list/domains.lst",
 ]
 exclude_lists = ["ru-blocked-geo"]
+keep = ["https://antifilter.download/list/domains.lst"]
 include_lists = ["rkn-blocked"]
 allow_tlds = ["ua"]
 # Re:filter lists all of Google; what Russia blocks there is named by its own subdomains.
 # A whole country's commercial zone is far wider than what Russia blocks in it.
 drop = ["google.com", "googleapis.com", "gstatic.com", "com.cy"]
 expect = ["rutracker.org", "youtube.com", "instagram.com", "meduza.io", "discord.com", "x.com", "jnn-pa.googleapis.com",
-          "youtube.de", "fragment.com", "rbxinfra.net", "149.154.167.50", "157.240.0.1", "2001:b28:f23d::1"]
+          "youtube.de", "fragment.com", "rbxinfra.net", "protonmail.com", "4pda.ru", "149.154.167.50", "157.240.0.1",
+          "2001:b28:f23d::1"]
 expect_not = ["chatgpt.com", "claude.ai", "spotify.com", "yandex.ru", "gosuslugi.ru", "google.com", "googleapis.com", "gstatic.com",
               "example.com.cy", "tiktok.com"]
 
