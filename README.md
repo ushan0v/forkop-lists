@@ -15,12 +15,15 @@
 | ChatGPT | [chatgpt.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/chatgpt.srs) | 0,4 КБ | |
 | Claude | [claude.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/claude.srs) | 0,3 КБ | ✓ |
 | Cloudflare | [cloudflare.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/cloudflare.srs) | 0,3 КБ | ✓ |
+| DigitalOcean | [digitalocean.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/digitalocean.srs) | 1 КБ | ✓ |
 | Discord | [discord.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/discord.srs) | 0,6 КБ | ✓ |
 | Facebook | [facebook.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/facebook.srs) | 3,1 КБ | |
 | Gemini | [gemini.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/gemini.srs) | 0,5 КБ | |
 | GitHub | [github.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/github.srs) | 0,7 КБ | |
 | Google Play | [google-play.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/google-play.srs) | 0,3 КБ | |
+| Hetzner | [hetzner.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/hetzner.srs) | 0,7 КБ | ✓ |
 | Instagram | [instagram.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/instagram.srs) | 0,7 КБ | |
+| OVH | [ovh.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ovh.srs) | 3,4 КБ | ✓ |
 | Roblox | [roblox.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/roblox.srs) | 0,6 КБ | ✓ |
 | Spotify | [spotify.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/spotify.srs) | 0,4 КБ | |
 | Supercell | [supercell.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/supercell.srs) | 0,3 КБ | |

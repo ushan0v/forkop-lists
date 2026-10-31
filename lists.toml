@@ -141,6 +141,15 @@ expect = ["cloudflare.com", "104.16.0.1", "172.67.1.1", "2606:4700::1"]
 expect_not = ["google.com"]
 
 [[list]]
+name = "digitalocean"
+title = "DigitalOcean"
+domains = ["itdog:Services/digitalocean.lst"]
+# DigitalOcean's main network, its second one and ServerStack, which it bought.
+ips = ["asn:14061", "asn:393406", "asn:46652"]
+expect = ["digitalocean.com", "104.131.0.1", "159.89.0.1", "2604:a880::1"]
+expect_not = ["google.com", "5.9.0.1", "51.38.0.1"]
+
+[[list]]
 name = "discord"
 title = "Discord"
 domains = ["v2fly:discord", "itdog:Services/discord.lst"]
@@ -189,6 +198,15 @@ expect = ["play.google.com", "play.googleapis.com"]
 expect_not = ["google.com", "youtube.com"]
 
 [[list]]
+name = "hetzner"
+title = "Hetzner"
+domains = ["itdog:Services/hetzner.lst"]
+# Hetzner Online and its two cloud networks.
+ips = ["asn:24940", "asn:213230", "asn:212317"]
+expect = ["hetzner.com", "5.9.0.1", "144.76.201.28", "116.202.208.149", "2a01:4f8::1"]
+expect_not = ["google.com", "104.131.0.1", "51.38.0.1"]
+
+[[list]]
 name = "instagram"
 title = "Instagram"
 domains = ["v2fly:instagram", "v2fly:threads"]
@@ -196,6 +214,15 @@ domains = ["v2fly:instagram", "v2fly:threads"]
 add = ["fbcdn.net"]
 expect = ["instagram.com", "cdninstagram.com", "threads.net", "fbcdn.net"]
 expect_not = ["whatsapp.com", "facebook.com"]
+
+[[list]]
+name = "ovh"
+title = "OVH"
+domains = ["itdog:Services/ovh.lst"]
+# OVHcloud's hosting and its telecom network.
+ips = ["asn:16276", "asn:35540"]
+expect = ["ovhcloud.com", "51.38.0.1", "141.95.207.211", "2001:41d0::1"]
+expect_not = ["google.com", "5.9.0.1", "104.131.0.1"]
 
 [[list]]
 name = "roblox"
