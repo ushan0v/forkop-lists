@@ -235,17 +235,11 @@ class Built:
 def collect_domains(fetcher, built, references, skip_attributes):
     for reference in references:
         kind, _, name = reference.partition(":")
-        if kind == "file":
-            path = os.path.join(ROOT, name)
-            built.sources.append(name)
-            with open(path, encoding="utf-8") as handle:
-                entries = list(plain_domains(handle.read()))
+        built.sources.append(source_url(reference))
+        if kind in V2FLY_KINDS:
+            entries = list(v2fly_entries(fetcher, kind, name))
         else:
-            built.sources.append(source_url(reference))
-            if kind in V2FLY_KINDS:
-                entries = list(v2fly_entries(fetcher, kind, name))
-            else:
-                entries = list(plain_domains(fetcher.get(source_url(reference))))
+            entries = list(plain_domains(fetcher.get(source_url(reference))))
         added = 0
         for entry_type, value, attributes in entries:
             if attributes & skip_attributes:
@@ -264,20 +258,56 @@ def collect_prefixes(fetcher, references, sources):
         except ValueError:
             pass
         kind = reference.partition(":")[0]
-        if kind == "file":
-            name = reference.partition(":")[2]
-            sources.append(name)
-            with open(os.path.join(ROOT, name), encoding="utf-8") as handle:
-                found = set(prefixes_of(handle.read()))
-        else:
-            url = source_url(reference)
-            sources.append(url)
-            text = fetcher.get(url)
-            found = set(asn_prefixes(text) if kind == "asn" else prefixes_of(text))
+        url = source_url(reference)
+        sources.append(url)
+        text = fetcher.get(url)
+        found = set(asn_prefixes(text) if kind == "asn" else prefixes_of(text))
         if not found:
             raise SourceError(f"{reference} gave no prefix")
         prefixes |= found
     return prefixes
+
+
+def hand_kept(name, kind, sources):
+    """The entries of sources/<list>.<add|del>.lst, comments left out."""
+    relative = f"sources/{name}.{kind}.lst"
+    path = os.path.join(ROOT, relative)
+    if not os.path.isfile(path):
+        return []
+    sources.append(relative)
+    with open(path, encoding="utf-8") as handle:
+        lines = (raw.split("#", 1)[0].strip() for raw in handle)
+        return [line for line in lines if line]
+
+
+def additions_of(recipe, built):
+    """Goes in with the list's sources, so its exclusions still apply. Returns the prefixes."""
+    name, prefixes = recipe["name"], set()
+    for value in hand_kept(name, "add", built.sources):
+        try:
+            prefixes.add(ipaddress.ip_network(value, strict=False))
+        except ValueError:
+            if not built.domains.add("suffix", value):
+                raise SystemExit(f"sources/{name}.add.lst: invalid entry {value!r}")
+    return prefixes
+
+
+def removals_of(recipe, built):
+    name, removed = recipe["name"], set()
+    for value in hand_kept(name, "del", built.sources):
+        domain = normalize_domain(value)
+        if domain is None:
+            raise SystemExit(f"sources/{name}.del.lst: invalid entry {value!r}")
+        removed.add(domain)
+    return removed
+
+
+def check_hand_kept_names(names):
+    """A misspelt file would otherwise be left out without a word."""
+    for filename in os.listdir(os.path.join(ROOT, "sources")):
+        stem, _, kind = filename.removesuffix(".lst").rpartition(".")
+        if not filename.endswith(".lst") or kind not in ("add", "del") or stem not in names:
+            raise SystemExit(f"sources/{filename}: not <list>.add.lst or <list>.del.lst of a list in lists.toml")
 
 
 def collapsed(prefixes):
@@ -289,13 +319,11 @@ def collapsed(prefixes):
 def build_list(fetcher, recipe, built_lists):
     built = Built(recipe)
     skip = frozenset(recipe.get("skip_attributes", ["ads"]))
-    for value in recipe.get("add", []):
-        if not built.domains.add("suffix", value):
-            raise SystemExit(f"lists.toml: {recipe['name']} adds an invalid domain {value!r}")
+    added_prefixes = additions_of(recipe, built)
     kept = Built(recipe)
     try:
         collect_domains(fetcher, built, recipe.get("domains", []), skip)
-        built.prefixes = collect_prefixes(fetcher, recipe.get("ips", []), built.sources)
+        built.prefixes = collect_prefixes(fetcher, recipe.get("ips", []), built.sources) | added_prefixes
         for scope in recipe.get("scoped", []):
             built.scoped.append((scope, collect_prefixes(fetcher, scope["ips"], built.sources)))
         collect_domains(fetcher, kept, recipe.get("keep", []), skip)
@@ -327,7 +355,7 @@ def build_list(fetcher, recipe, built_lists):
         built.domains.update(included.domains)
         built.prefixes |= included.prefixes
         built.scoped += included.scoped
-    drop = {normalize_domain(name) for name in recipe.get("drop", [])}
+    drop = removals_of(recipe, built)
     built.domains.suffix -= drop
     built.domains.full -= drop
     dropped = built.domains.minimize(set(recipe.get("allow_tlds", [])))
@@ -453,6 +481,7 @@ def main():
 
     with open(os.path.join(ROOT, "lists.toml"), "rb") as handle:
         recipes = tomllib.load(handle)["list"]
+    check_hand_kept_names({r["name"] for r in recipes})
     order = ordered(recipes)
     if args.only:
         needed = set()

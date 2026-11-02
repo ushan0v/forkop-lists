@@ -1,6 +1,6 @@
 # forkop-lists
 
-Встроенные списки [Forkop](https://github.com/ushan0v/forkop): домены и подсети в формате sing-box. Собираются раз в сутки из [lists.toml](lists.toml).
+Встроенные списки [Forkop](https://github.com/ushan0v/forkop): домены и подсети в формате sing-box. Собираются раз в сутки из [lists.toml](lists.toml) и [sources](sources).
 
 ## Списки
 

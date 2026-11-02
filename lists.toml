@@ -1,15 +1,17 @@
 # The lists in the order the README shows them. Each list is built from its sources:
-#   domains        sources of domains: itdog:PATH, v2fly:NAME, roscomvpn:NAME, grimbird:NAME, file:PATH or a URL
-#   ips            sources of subnets: loyalsoldier:NAME, asn:NUMBER, file:PATH, a URL or a literal prefix
+#   domains        sources of domains: itdog:PATH, v2fly:NAME, roscomvpn:NAME, grimbird:NAME or a URL
+#   ips            sources of subnets: loyalsoldier:NAME, asn:NUMBER, a URL or a literal prefix
 #   scoped         subnets matched only for a network and a port range
-#   add            domains added by hand
 #   include_lists  other lists merged in
 #   exclude_lists  other lists whose names are taken out
 #   keep           sources of domains the exclusions leave in, where the list's own sources hold them
-#   drop           entries taken out as written, their subdomains stay
 #   allow_tlds     whole top-level domains kept; any other entry without a dot is dropped
 #   expect         names and addresses the built list must match, checked with sing-box
 #   expect_not     names and addresses it must not match
+#
+# What is kept by hand lives beside the sources, a line each:
+#   sources/<name>.add.lst  domains and subnets added, before the list's exclusions
+#   sources/<name>.del.lst  domains taken out at the end as written, their subdomains stay
 
 [[list]]
 name = "ru-blocked-all"
@@ -24,9 +26,6 @@ expect_not = ["yandex.ru", "gosuslugi.ru", "vk.com", "google.com", "googleapis.c
 [[list]]
 name = "ru-blocked-rkn"
 title = "RU Blocked (RKN)"
-# Re:filter and the antifilter community also list sites that block Russia themselves:
-# whatever the geoblock list holds is taken out of them, and what Russia blocks comes back in,
-# the names of the registry and the blocked services.
 domains = [
     "https://raw.githubusercontent.com/1andrevich/Re-filter-lists/main/domains_all.lst",
     "https://community.antifilter.download/list/domains.lst",
@@ -35,9 +34,6 @@ exclude_lists = ["ru-blocked-geo"]
 keep = ["https://antifilter.download/list/domains.lst"]
 include_lists = ["rkn-blocked"]
 allow_tlds = ["ua"]
-# Re:filter lists all of Google; what Russia blocks there is named by its own subdomains.
-# A whole country's commercial zone is far wider than what Russia blocks in it.
-drop = ["google.com", "googleapis.com", "gstatic.com", "com.cy"]
 expect = ["rutracker.org", "youtube.com", "instagram.com", "meduza.io", "discord.com", "x.com", "jnn-pa.googleapis.com",
           "youtube.de", "fragment.com", "rbxinfra.net", "protonmail.com", "4pda.ru", "149.154.167.50", "157.240.0.1",
           "2001:b28:f23d::1"]
@@ -53,17 +49,12 @@ domains = [
     "https://raw.githubusercontent.com/dartraiden/no-russia-hosts/master/hosts-wildcard.txt",
 ]
 exclude_lists = ["rkn-blocked"]
-# The services that close themselves to Russia come in whole, with their subnets.
 include_lists = ["chatgpt", "claude", "gemini", "spotify", "supercell", "tiktok"]
-# Whole Google, a whole country's commercial zone and all of Microsoft, its updates too, are far
-# wider than what blocks Russia there.
-drop = ["google.com", "googleapis.com", "co.nz", "microsoft.com"]
 expect = ["chatgpt.com", "claude.ai", "spotify.com", "netflix.com", "notion.so", "intel.com", "copilot.microsoft.com",
           "tiktok.com", "clau.de", "160.79.104.10"]
 expect_not = ["rutracker.org", "youtube.com", "yandex.ru", "google.com", "googleapis.com", "mintel.com", "profintel.ru",
               "freemusicarchive.org", "microsoft.com", "firebaseinstallations.googleapis.com"]
 
-# What Russia blocks besides Re:filter and antifilter: itdog's blocked sites and the blocked services whole.
 [[list]]
 name = "rkn-blocked"
 title = "Blocked by RKN"
@@ -90,10 +81,7 @@ domains = [
     "roscomvpn:whitelist",
     "grimbird:category-ru-whitelist",
     "https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/main/whitelist.txt",
-    "file:sources/ru-only.txt",
 ]
-# A list routed around the proxy must never take a blocked site with it: what RU Blocked (All) holds
-# is taken out, and so is any wider zone (spb.ru) that a blocked site sits in.
 exclude_lists = ["ru-blocked-all"]
 exclude_wider = true
 allow_tlds = ["yandex"]
@@ -112,8 +100,6 @@ name = "ai"
 title = "AI"
 domains = ["v2fly:category-ai-!cn", "itdog:Services/google_ai.lst"]
 ips = ["asn:399358"]
-# Firebase's installation API serves every app built on Firebase, Russian ones too.
-drop = ["firebaseinstallations.googleapis.com"]
 expect = ["chatgpt.com", "claude.ai", "gemini.google.com", "grok.com", "perplexity.ai", "160.79.104.10"]
 expect_not = ["google.com", "youtube.com", "firebaseinstallations.googleapis.com"]
 
@@ -144,7 +130,6 @@ expect_not = ["google.com"]
 name = "digitalocean"
 title = "DigitalOcean"
 domains = ["itdog:Services/digitalocean.lst"]
-# DigitalOcean's main network, its second one and ServerStack, which it bought.
 ips = ["asn:14061", "asn:393406", "asn:46652"]
 expect = ["digitalocean.com", "104.131.0.1", "159.89.0.1", "2604:a880::1"]
 expect_not = ["google.com", "5.9.0.1", "51.38.0.1"]
@@ -156,8 +141,6 @@ domains = ["v2fly:discord", "itdog:Services/discord.lst"]
 expect = ["discord.com", "discord.gg", "discordapp.net", "discord.media"]
 expect_not = ["google.com"]
 
-# Voice runs over UDP to these networks on high ports; matched by port, so the rest of the
-# traffic to the same clouds stays where it was.
 [[list.scoped]]
 network = "udp"
 port_range = "50000:65535"
@@ -179,7 +162,6 @@ expect_not = ["instagram.com", "whatsapp.com"]
 name = "gemini"
 title = "Gemini"
 domains = ["v2fly:google-gemini", "itdog:Services/google_ai.lst"]
-drop = ["firebaseinstallations.googleapis.com"]
 expect = ["gemini.google.com", "aistudio.google.com", "notebooklm.google.com"]
 expect_not = ["google.com", "youtube.com", "firebaseinstallations.googleapis.com"]
 
@@ -201,7 +183,6 @@ expect_not = ["google.com", "youtube.com"]
 name = "hetzner"
 title = "Hetzner"
 domains = ["itdog:Services/hetzner.lst"]
-# Hetzner Online and its two cloud networks.
 ips = ["asn:24940", "asn:213230", "asn:212317"]
 expect = ["hetzner.com", "5.9.0.1", "144.76.201.28", "116.202.208.149", "2a01:4f8::1"]
 expect_not = ["google.com", "104.131.0.1", "51.38.0.1"]
@@ -210,8 +191,6 @@ expect_not = ["google.com", "104.131.0.1", "51.38.0.1"]
 name = "instagram"
 title = "Instagram"
 domains = ["v2fly:instagram", "v2fly:threads"]
-# Instagram also loads media from Meta's shared CDN.
-add = ["fbcdn.net"]
 expect = ["instagram.com", "cdninstagram.com", "threads.net", "fbcdn.net"]
 expect_not = ["whatsapp.com", "facebook.com"]
 
@@ -219,7 +198,6 @@ expect_not = ["whatsapp.com", "facebook.com"]
 name = "ovh"
 title = "OVH"
 domains = ["itdog:Services/ovh.lst"]
-# OVHcloud's hosting and its telecom network.
 ips = ["asn:16276", "asn:35540"]
 expect = ["ovhcloud.com", "51.38.0.1", "141.95.207.211", "2001:41d0::1"]
 expect_not = ["google.com", "5.9.0.1", "104.131.0.1"]
@@ -242,7 +220,7 @@ expect_not = ["google.com"]
 [[list]]
 name = "supercell"
 title = "Supercell"
-domains = ["file:sources/supercell.txt", "v2fly:supercell"]
+domains = ["v2fly:supercell"]
 expect = ["supercell.com", "brawlstars.com", "clashofclans.com", "clashroyale.com"]
 expect_not = ["google.com"]
 
@@ -272,7 +250,6 @@ expect_not = ["google.com"]
 name = "whatsapp"
 title = "WhatsApp"
 domains = ["v2fly:whatsapp"]
-# Calls and media go to Meta's addresses directly; they are shared by every Meta service.
 ips = ["loyalsoldier:facebook"]
 expect = ["whatsapp.com", "whatsapp.net", "wa.me", "157.240.0.1"]
 expect_not = ["instagram.com", "facebook.com"]
