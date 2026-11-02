@@ -1,55 +1,48 @@
 # forkop-lists
 
-Встроенные списки [Forkop](https://github.com/ushan0v/forkop): домены и подсети в формате sing-box. Собираются раз в сутки из [lists.toml](lists.toml) и [sources](sources).
+Встроенные списки [Forkop](https://github.com/ushan0v/forkop): домены и подсети в форматах sing-box и Xray. Собираются раз в сутки из [lists.toml](lists.toml) и [sources](sources).
 
 ## Списки
 
-| Список | Файл | Размер | Подсети |
-|---|---|---:|:---:|
-| RU Blocked (All) | [ru-blocked-all.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-all.srs) | 493 КБ | ✓ |
-| RU Blocked (RKN) | [ru-blocked-rkn.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-rkn.srs) | 487 КБ | ✓ |
-| RU Blocked (Geo) | [ru-blocked-geo.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-geo.srs) | 9,5 КБ | ✓ |
-| RU Only | [ru-only.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-only.srs) | 5,1 КБ | |
-| UA Blocked | [ua-blocked.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ua-blocked.srs) | 9,2 КБ | |
-| AI | [ai.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ai.srs) | 2 КБ | ✓ |
-| ChatGPT | [chatgpt.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/chatgpt.srs) | 0,4 КБ | |
-| Claude | [claude.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/claude.srs) | 0,3 КБ | ✓ |
-| Cloudflare | [cloudflare.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/cloudflare.srs) | 0,3 КБ | ✓ |
-| DigitalOcean | [digitalocean.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/digitalocean.srs) | 1 КБ | ✓ |
-| Discord | [discord.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/discord.srs) | 0,6 КБ | ✓ |
-| Facebook | [facebook.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/facebook.srs) | 3,1 КБ | |
-| Gemini | [gemini.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/gemini.srs) | 0,5 КБ | |
-| GitHub | [github.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/github.srs) | 0,7 КБ | |
-| Google Play | [google-play.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/google-play.srs) | 0,3 КБ | |
-| Hetzner | [hetzner.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/hetzner.srs) | 0,7 КБ | ✓ |
-| Instagram | [instagram.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/instagram.srs) | 0,7 КБ | |
-| OVH | [ovh.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ovh.srs) | 3,4 КБ | ✓ |
-| Roblox | [roblox.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/roblox.srs) | 0,6 КБ | ✓ |
-| Spotify | [spotify.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/spotify.srs) | 0,4 КБ | |
-| Supercell | [supercell.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/supercell.srs) | 0,3 КБ | |
-| Telegram | [telegram.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/telegram.srs) | 0,4 КБ | ✓ |
-| TikTok | [tiktok.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/tiktok.srs) | 0,5 КБ | |
-| Twitch | [twitch.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/twitch.srs) | 0,4 КБ | |
-| WhatsApp | [whatsapp.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/whatsapp.srs) | 0,7 КБ | ✓ |
-| X (Twitter) | [x.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/x.srs) | 0,5 КБ | ✓ |
-| YouTube | [youtube.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/youtube.srs) | 1,2 КБ | |
-| Ads | [ads.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ads.srs) | 1,6 МБ | |
+Для Xray: [geosite.dat](https://github.com/ushan0v/forkop-lists/releases/latest/download/geosite.dat), [geoip.dat](https://github.com/ushan0v/forkop-lists/releases/latest/download/geoip.dat).
 
-## Региональные списки
+| Список | Файл | Подсети | Тег .dat |
+|---|---|:---:|---|
+| RU Blocked (All) | [ru-blocked-all.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-all.srs) | ✓ | `geosite:ru-blocked-all` `geoip:ru-blocked-all` |
+| RU Blocked (RKN) | [ru-blocked-rkn.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-rkn.srs) | ✓ | `geosite:ru-blocked-rkn` `geoip:ru-blocked-rkn` |
+| RU Blocked (Geo) | [ru-blocked-geo.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-blocked-geo.srs) | ✓ | `geosite:ru-blocked-geo` `geoip:ru-blocked-geo` |
+| RU Only | [ru-only.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ru-only.srs) |  | `geosite:ru-only` |
+| UA Blocked | [ua-blocked.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ua-blocked.srs) |  | `geosite:ua-blocked` |
+| AI | [ai.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ai.srs) | ✓ | `geosite:ai` `geoip:ai` |
+| ChatGPT | [chatgpt.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/chatgpt.srs) |  | `geosite:chatgpt` |
+| Claude | [claude.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/claude.srs) | ✓ | `geosite:claude` `geoip:claude` |
+| Cloudflare | [cloudflare.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/cloudflare.srs) | ✓ | `geosite:cloudflare` `geoip:cloudflare` |
+| DigitalOcean | [digitalocean.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/digitalocean.srs) | ✓ | `geosite:digitalocean` `geoip:digitalocean` |
+| Discord | [discord.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/discord.srs) | ✓ | `geosite:discord` |
+| Facebook | [facebook.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/facebook.srs) |  | `geosite:facebook` |
+| Gemini | [gemini.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/gemini.srs) |  | `geosite:gemini` |
+| GitHub | [github.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/github.srs) |  | `geosite:github` |
+| Google Play | [google-play.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/google-play.srs) |  | `geosite:google-play` |
+| Hetzner | [hetzner.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/hetzner.srs) | ✓ | `geosite:hetzner` `geoip:hetzner` |
+| Instagram | [instagram.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/instagram.srs) |  | `geosite:instagram` |
+| OVH | [ovh.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ovh.srs) | ✓ | `geosite:ovh` `geoip:ovh` |
+| Roblox | [roblox.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/roblox.srs) | ✓ | `geosite:roblox` `geoip:roblox` |
+| Spotify | [spotify.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/spotify.srs) |  | `geosite:spotify` |
+| Supercell | [supercell.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/supercell.srs) |  | `geosite:supercell` |
+| Telegram | [telegram.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/telegram.srs) | ✓ | `geosite:telegram` `geoip:telegram` |
+| TikTok | [tiktok.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/tiktok.srs) |  | `geosite:tiktok` |
+| Twitch | [twitch.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/twitch.srs) |  | `geosite:twitch` |
+| WhatsApp | [whatsapp.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/whatsapp.srs) | ✓ | `geosite:whatsapp` `geoip:whatsapp` |
+| X (Twitter) | [x.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/x.srs) | ✓ | `geosite:x` `geoip:x` |
+| YouTube | [youtube.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/youtube.srs) |  | `geosite:youtube` |
+| Ads | [ads.srs](https://github.com/ushan0v/forkop-lists/releases/latest/download/ads.srs) |  | `geosite:ads` |
 
-- **RU Blocked (All)**: RKN + Geo.
-- **RU Blocked (RKN)**: Заблокировано внутри РФ (РКН). Включает списки YouTube, Discord, Facebook, Instagram, X (Twitter), Telegram, WhatsApp, Roblox.
-- **RU Blocked (Geo)**: Заблокировано для РФ. Включает списки ChatGPT, Claude, Gemini, Spotify, Supercell, TikTok.
-- **RU Only**: Сервисы, которые работают только внутри РФ.
-- **UA Blocked**: Заблокировано в Украине.
 
 ## Предложить правку
 
-Откройте issue по шаблону:
-
-- [Добавить в список](https://github.com/ushan0v/forkop-lists/issues/new?template=1-add.yml), если в нём не хватает домена или подсети;
+- [Добавить в список](https://github.com/ushan0v/forkop-lists/issues/new?template=1-add.yml), если в нём чего то не хватает;
 - [Убрать из списка](https://github.com/ushan0v/forkop-lists/issues/new?template=2-remove.yml), если в него попало лишнее;
-- [Предложить новый список](https://github.com/ushan0v/forkop-lists/issues/new?template=3-new-list.yml), если считаете, что сервису нужен отдельный набор.
+- [Новый список](https://github.com/ushan0v/forkop-lists/issues/new?template=3-new-list.yml), если считаете, что сервису нужен отдельный список.
 
 ## Лицензия
 

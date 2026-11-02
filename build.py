@@ -34,6 +34,8 @@ SOURCES = {
 V2FLY_KINDS = {"v2fly", "roscomvpn", "grimbird"}
 V2FLY_TYPES = {"domain": "suffix", "full": "full", "keyword": "keyword", "regexp": "regex"}
 DOMAIN_RE = re.compile(r"[a-z0-9_-]+(\.[a-z0-9_-]+)*")
+# Rule set keys and the Domain.Type of Xray that matches the same way.
+DAT_DOMAIN_TYPES = {"domain_keyword": 0, "domain_regex": 1, "domain_suffix": 2, "domain": 3}
 
 
 class SourceError(Exception):
@@ -394,6 +396,61 @@ def counts_of(built):
     return {"domains": built.domains.count(), "ipv4": len(v4), "ipv6": len(v6)}
 
 
+def varint(value):
+    out = bytearray()
+    while value > 0x7f:
+        out.append(value & 0x7f | 0x80)
+        value >>= 7
+    out.append(value)
+    return bytes(out)
+
+
+def varint_field(number, value):
+    return varint(number << 3) + varint(value)
+
+
+def bytes_field(number, payload):
+    return varint(number << 3 | 2) + varint(len(payload)) + payload
+
+
+def dat_domain(kind, value):
+    # Substr is the protobuf default, so its field stays out.
+    return (varint_field(1, kind) if kind else b"") + bytes_field(2, value.encode())
+
+
+def dat_cidr(prefix):
+    network = ipaddress.ip_network(prefix)
+    return bytes_field(1, network.network_address.packed) + varint_field(2, network.prefixlen)
+
+
+def write_dat(out_dir, names):
+    """Xray's geosite.dat and geoip.dat from the built lists, kept ones included: the GeoSiteList and
+    GeoIPList of its common/geodata/geodat.proto. Xray looks a tag up in upper case. The format has no
+    ports, and without them a port-bound rule would take whole clouds (Discord's voice), so it stays out."""
+    sites, ips = bytearray(), bytearray()
+    for name in names:
+        path = os.path.join(out_dir, f"{name}.json")
+        if not os.path.isfile(path):
+            continue
+        with open(path, encoding="utf-8") as handle:
+            rules = json.load(handle)["rules"]
+        code = bytes_field(1, name.upper().encode())
+        domains, cidrs = [], []
+        for rule in rules:
+            if "port_range" in rule:
+                continue
+            for key, kind in DAT_DOMAIN_TYPES.items():
+                domains += [bytes_field(2, dat_domain(kind, value)) for value in rule.get(key, [])]
+            cidrs += [bytes_field(2, dat_cidr(prefix)) for prefix in rule.get("ip_cidr", [])]
+        if domains:
+            sites += bytes_field(1, code + b"".join(domains))
+        if cidrs:
+            ips += bytes_field(1, code + b"".join(cidrs))
+    for filename, content in (("geosite.dat", sites), ("geoip.dat", ips)):
+        with open(os.path.join(out_dir, filename), "wb") as handle:
+            handle.write(content)
+
+
 def sha256_of(path):
     with open(path, "rb") as handle:
         return hashlib.sha256(handle.read()).hexdigest()
@@ -551,6 +608,7 @@ def main():
     with open(os.path.join(args.out, "manifest.json"), "w", encoding="utf-8", newline="\n") as handle:
         json.dump({"generated": now, "lists": manifest}, handle, indent=2, ensure_ascii=False)
         handle.write("\n")
+    write_dat(args.out, manifest)
 
     changed = any(e["status"] == "ok" and (not previous.get(n) or previous[n].get("sha256") != e.get("sha256"))
                   for n, e in manifest.items()) or set(previous) != set(manifest)
