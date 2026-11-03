@@ -471,12 +471,12 @@ def matches(sing_box, binary_path, target):
     return "match rules." in result.stdout + result.stderr
 
 
-def check_expectations(sing_box, recipe, binary_path):
+def check_expectations(sing_box, checks, binary_path):
     problems = []
-    for target in recipe.get("expect", []):
+    for target in checks.get("expect", []):
         if not matches(sing_box, binary_path, target):
             problems.append(f"{target} is missing")
-    for target in recipe.get("expect_not", []):
+    for target in checks.get("expect_not", []):
         if matches(sing_box, binary_path, target):
             problems.append(f"{target} matches but must not")
     return problems
@@ -539,6 +539,11 @@ def main():
     with open(os.path.join(ROOT, "lists.toml"), "rb") as handle:
         recipes = tomllib.load(handle)["list"]
     check_hand_kept_names({r["name"] for r in recipes})
+    with open(os.path.join(ROOT, "checks.toml"), "rb") as handle:
+        checks = tomllib.load(handle)
+    unknown = set(checks) - {r["name"] for r in recipes}
+    if unknown:
+        raise SystemExit(f"checks.toml: no such list: {', '.join(sorted(unknown))}")
     order = ordered(recipes)
     if args.only:
         needed = set()
@@ -580,7 +585,7 @@ def main():
                 json.dump(rule_set_of(built), handle, indent=2, ensure_ascii=False)
                 handle.write("\n")
             compile_rule_set(args.sing_box, source_path, binary_path)
-            notes += check_expectations(args.sing_box, recipe, binary_path)
+            notes += check_expectations(args.sing_box, checks.get(name, {}), binary_path)
             size = counts["domains"] + counts["ipv4"] + counts["ipv6"]
             if before:
                 before_size = before["domains"] + before["ipv4"] + before["ipv6"]

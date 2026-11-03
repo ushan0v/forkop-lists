@@ -9,6 +9,7 @@ on:
     paths:
       - build.py
       - lists.toml
+      - checks.toml
       - sources/**
       - .github/workflows/build.yml
 
