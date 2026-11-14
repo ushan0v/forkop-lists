@@ -1,0 +1,412 @@
+{
+  "generated": "2026-11-14T09:21:46+00:00",
+  "lists": {
+    "youtube": {
+      "title": "YouTube",
+      "file": "youtube.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/youtube",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/youtube.lst"
+      ],
+      "domains": 181,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "1273cf10ba1c7e83e4cc4e35df30bf83cb7fd350e19615a339a2cec4a6522d5e",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "discord": {
+      "title": "Discord",
+      "file": "discord.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/discord",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/discord.lst",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/discord.lst",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/discord.lst"
+      ],
+      "domains": 28,
+      "ipv4": 9,
+      "ipv6": 1,
+      "sha256": "0434a7307e40a3f7220c8782c554056143dde4563e5906799357a4a19e763686",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "facebook": {
+      "title": "Facebook",
+      "file": "facebook.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/facebook",
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/messenger"
+      ],
+      "domains": 398,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "1a364db715881ee6be527a1b2cb9da1eca8d46e5587ab3277db0028e7ab26839",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "instagram": {
+      "title": "Instagram",
+      "file": "instagram.srs",
+      "sources": [
+        "sources/instagram.add.lst",
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/instagram",
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/threads"
+      ],
+      "domains": 75,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "a3c7afb92797af4cfc908513423f574c07e5cec2b13055d4d17e06e01b4586b7",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "x": {
+      "title": "X (Twitter)",
+      "file": "x.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/twitter",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/twitter.lst",
+        "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/twitter.txt"
+      ],
+      "domains": 24,
+      "ipv4": 17,
+      "ipv6": 3,
+      "sha256": "4018eb8c497e10b9a702d9943e1709eb911e3d0d349c6c98c18fed8c391c7090",
+      "updated": "2026-11-05T09:48:50+00:00",
+      "status": "ok"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "file": "telegram.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/telegram.lst",
+        "https://core.telegram.org/resources/cidr.txt",
+        "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt"
+      ],
+      "domains": 21,
+      "ipv4": 8,
+      "ipv6": 4,
+      "sha256": "42e75cd3387a2d1788b45a75f91cd95045fb6c523206a1bf4574aa572568a251",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "whatsapp": {
+      "title": "WhatsApp",
+      "file": "whatsapp.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/whatsapp",
+        "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/facebook.txt"
+      ],
+      "domains": 11,
+      "ipv4": 80,
+      "ipv6": 42,
+      "sha256": "89d78d5c64fa5670997ba50b9053ece362bf22058ce971532588376bbf035aa6",
+      "updated": "2026-11-12T10:13:08+00:00",
+      "status": "ok"
+    },
+    "roblox": {
+      "title": "Roblox",
+      "file": "roblox.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/roblox",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/roblox.lst",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS22697",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/roblox.lst"
+      ],
+      "domains": 52,
+      "ipv4": 5,
+      "ipv6": 2,
+      "sha256": "bb0feca91f7ded3c908d048dc93e7e069898e425d5a76ced0584928a7c2034ac",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "chatgpt": {
+      "title": "ChatGPT",
+      "file": "chatgpt.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai"
+      ],
+      "domains": 21,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "facfaa71657839db959dfa08af94a5ce43a4b5b0602344c05146d2ab2d234820",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "claude": {
+      "title": "Claude",
+      "file": "claude.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/anthropic",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS399358"
+      ],
+      "domains": 21,
+      "ipv4": 1,
+      "ipv6": 2,
+      "sha256": "69c3ebd029914e4f2206f4c10d73c0796e2e8ecc580f2cd447214aee63dc81cf",
+      "updated": "2026-11-07T09:12:03+00:00",
+      "status": "ok"
+    },
+    "gemini": {
+      "title": "Gemini",
+      "file": "gemini.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google-gemini",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/google_ai.lst",
+        "sources/gemini.del.lst"
+      ],
+      "domains": 46,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "1310d376bff7bcc9889cc9d6ee8e5021f88e50d7030387884da9080900b972b5",
+      "updated": "2026-10-26T15:07:41+00:00",
+      "status": "ok"
+    },
+    "spotify": {
+      "title": "Spotify",
+      "file": "spotify.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/spotify"
+      ],
+      "domains": 25,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "fcb8b834c10d830fc86423d6771370d7304396580db276635632f30504ac14f9",
+      "updated": "2026-10-26T08:05:06+00:00",
+      "status": "ok"
+    },
+    "supercell": {
+      "title": "Supercell",
+      "file": "supercell.srs",
+      "sources": [
+        "sources/supercell.add.lst",
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/supercell"
+      ],
+      "domains": 24,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "cd17d850792f71146e42250cede8103e93a0e4103d48171716d354ed7cc82f03",
+      "updated": "2026-11-03T00:20:59+00:00",
+      "status": "ok"
+    },
+    "tiktok": {
+      "title": "TikTok",
+      "file": "tiktok.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/tiktok",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/tiktok.lst"
+      ],
+      "domains": 41,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "038063b2f379bee9fe615a477ce4446a2c29c08cca48b40a9f7c56d014bf76f2",
+      "updated": "2026-10-31T01:28:14+00:00",
+      "status": "ok"
+    },
+    "ru-blocked-geo": {
+      "title": "RU Blocked (Geo)",
+      "file": "ru-blocked-geo.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Categories/geoblock.lst",
+        "https://raw.githubusercontent.com/hydraponique/roscomvpn-geosite/master/data/category-geoblock-ru",
+        "https://raw.githubusercontent.com/dartraiden/no-russia-hosts/master/hosts-wildcard.txt",
+        "sources/ru-blocked-geo.del.lst"
+      ],
+      "domains": 1406,
+      "ipv4": 1,
+      "ipv6": 2,
+      "sha256": "7949d8e8586d972c9189ea0793ba044b30031df65acd0cddaa394db1f3d15984",
+      "updated": "2026-11-14T09:21:46+00:00",
+      "status": "ok"
+    },
+    "ru-blocked-rkn": {
+      "title": "RU Blocked (RKN)",
+      "file": "ru-blocked-rkn.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/1andrevich/Re-filter-lists/main/domains_all.lst",
+        "https://community.antifilter.download/list/domains.lst",
+        "https://antifilter.download/list/domains.lst",
+        "sources/ru-blocked-rkn.del.lst"
+      ],
+      "domains": 75141,
+      "ipv4": 125,
+      "ipv6": 52,
+      "sha256": "1ccf5a0c53684c4da7dacf3be75dfa2338caff7a5837cba7c4a7a257f1d13ab6",
+      "updated": "2026-11-12T10:13:08+00:00",
+      "status": "ok"
+    },
+    "ru-blocked-all": {
+      "title": "RU Blocked (All)",
+      "file": "ru-blocked-all.srs",
+      "sources": [],
+      "domains": 76500,
+      "ipv4": 126,
+      "ipv6": 54,
+      "sha256": "5e149eb26d438588b101461b01f470481be6a42530513d7bfabd69ff9099ce6f",
+      "updated": "2026-11-14T09:21:46+00:00",
+      "status": "ok"
+    },
+    "ru-only": {
+      "title": "RU Only",
+      "file": "ru-only.srs",
+      "sources": [
+        "sources/ru-only.add.lst",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/outside-raw.lst",
+        "https://raw.githubusercontent.com/hydraponique/roscomvpn-geosite/master/data/whitelist",
+        "https://raw.githubusercontent.com/GrimbirdUsers/ru-routing-dat/main/data-geosite/category-ru-whitelist",
+        "https://raw.githubusercontent.com/hxehex/russia-mobile-internet-whitelist/main/whitelist.txt"
+      ],
+      "domains": 796,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "eecfb0f11e6a953e85e3049769f15a89a276d3a2133f556bf2a2c3082c43b1a1",
+      "updated": "2026-11-01T09:39:54+00:00",
+      "status": "ok"
+    },
+    "ua-blocked": {
+      "title": "UA Blocked",
+      "file": "ua-blocked.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Ukraine/inside-raw.lst"
+      ],
+      "domains": 1339,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "beb1c5dac52b7970632a6e6f5f5f10eded86d4a194434bd57261b50d820988ff",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "ai": {
+      "title": "AI",
+      "file": "ai.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/category-ai-!cn",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/google_ai.lst",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS399358",
+        "sources/ai.del.lst"
+      ],
+      "domains": 211,
+      "ipv4": 1,
+      "ipv6": 2,
+      "sha256": "1da770d2f3d26c1f9347b719c2be37b1fe24f0dd62e4b638d21d78ec0202d011",
+      "updated": "2026-11-08T09:25:49+00:00",
+      "status": "ok"
+    },
+    "cloudflare": {
+      "title": "Cloudflare",
+      "file": "cloudflare.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/cloudflare.lst",
+        "https://www.cloudflare.com/ips-v4",
+        "https://www.cloudflare.com/ips-v6"
+      ],
+      "domains": 4,
+      "ipv4": 15,
+      "ipv6": 7,
+      "sha256": "a2e5cf106baa1ecbac5f95aa3f3e4b392dd5ede2a188319da4a66e92a69c1f89",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "digitalocean": {
+      "title": "DigitalOcean",
+      "file": "digitalocean.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/digitalocean.lst",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS14061",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS393406",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS46652"
+      ],
+      "domains": 1,
+      "ipv4": 207,
+      "ipv6": 13,
+      "sha256": "40bdbc9ab8a3bedc3f6a14d7943c50091c76a84b8c918db0447eff9d09aa9682",
+      "updated": "2026-11-14T09:21:46+00:00",
+      "status": "ok"
+    },
+    "github": {
+      "title": "GitHub",
+      "file": "github.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/github"
+      ],
+      "domains": 60,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "1820491048e4e1affb2630ee37ba2f9fd8af476bd9ff291e0fd60724490423c9",
+      "updated": "2026-11-08T09:25:49+00:00",
+      "status": "ok"
+    },
+    "google-play": {
+      "title": "Google Play",
+      "file": "google-play.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google-play",
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/google_play.lst"
+      ],
+      "domains": 15,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "cfdb61c5a43222bc22a564bfbbff540d9f5c726ccd2d4c61acf3fc76c1b918d2",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "hetzner": {
+      "title": "Hetzner",
+      "file": "hetzner.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/hetzner.lst",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS24940",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS213230",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS212317"
+      ],
+      "domains": 1,
+      "ipv4": 87,
+      "ipv6": 5,
+      "sha256": "84274e18c26efb4fe6d161581fff18197e2122e0b5e7ba440f52289742926c2d",
+      "updated": "2026-11-05T09:48:50+00:00",
+      "status": "ok"
+    },
+    "ovh": {
+      "title": "OVH",
+      "file": "ovh.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/ovh.lst",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS16276",
+        "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS35540"
+      ],
+      "domains": 1,
+      "ipv4": 693,
+      "ipv6": 6,
+      "sha256": "ff4f44723ca3b434078717e745238ffac4b3b59abc8123978c92845670f84dab",
+      "updated": "2026-11-14T09:21:46+00:00",
+      "status": "ok"
+    },
+    "twitch": {
+      "title": "Twitch",
+      "file": "twitch.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/twitch"
+      ],
+      "domains": 35,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "de69ef16d0822eff79b7a1ac2d4b66cbf72646797dfbdb6a7314d796b1d7e805",
+      "updated": "2026-10-23T18:39:12+00:00",
+      "status": "ok"
+    },
+    "ads": {
+      "title": "Ads",
+      "file": "ads.srs",
+      "sources": [
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro-onlydomains.txt"
+      ],
+      "domains": 227848,
+      "ipv4": 0,
+      "ipv6": 0,
+      "sha256": "f0aa187654cde09128317d1ccd537f440bc68a775688599f39edbf2142aa7e98",
+      "updated": "2026-11-14T09:21:46+00:00",
+      "status": "ok"
+    }
+  }
+}
