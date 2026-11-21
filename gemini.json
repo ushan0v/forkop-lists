@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain": [
+        "appsgenaiserver-pa.clients.google.com",
+        "appsgenaiserver-pa.googleapis.com",
+        "cloudaicompanion.googleapis.com",
+        "cloudcode-pa.googleapis.com",
+        "daily-cloudcode-pa.googleapis.com",
+        "geminiweb-pa.clients.google.com",
+        "notebooklm-pa.googleapis.com",
+        "notebooklm.googleapis.com"
+      ],
+      "domain_suffix": [
+        "ai.google.dev",
+        "ai.studio",
+        "aicode.googleapis.com",
+        "aida.googleapis.com",
+        "aisandbox-pa.googleapis.com",
+        "aistudio.google.com",
+        "antigravity-pa.googleapis.com",
+        "antigravity-unleash.goog",
+        "antigravity.google",
+        "antigravity.googleapis.com",
+        "bard.google.com",
+        "clients6.google.com",
+        "deepmind.com",
+        "deepmind.google",
+        "flow.google",
+        "flow.google.com",
+        "geller-pa.googleapis.com",
+        "gemini.google",
+        "gemini.google.com",
+        "gemini.gstatic.com",
+        "generativeai.google",
+        "generativelanguage.googleapis.com",
+        "jules.google",
+        "jules.google.com",
+        "labs.google",
+        "labs.google.com",
+        "labstailwind.pa.googleapis.com",
+        "makersuite.google.com",
+        "notebook.google",
+        "notebook.google.com",
+        "notebooklm.google",
+        "notebooklm.google.com",
+        "opal.google",
+        "opal.google.com",
+        "proactivebackend-pa.googleapis.com",
+        "robinfrontend-pa.googleapis.com",
+        "speechs3proto2-pa.googleapis.com",
+        "stitch.withgoogle.com"
+      ]
+    }
+  ]
+}
